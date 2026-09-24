@@ -2,28 +2,29 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>WALKER CORP // ARCHIVE TERMINAL</title>
+  <title>WALKER CORP // SUB-LEVEL 86 ARCHIVE</title>
   <style>
     body {
-      background-color: #0d0d0d;
+      background-color: #080808;
       color: #00ff66;
       font-family: 'Courier New', monospace;
       padding: 20px;
       margin: 0;
     }
     #screen {
-      max-width: 800px;
+      max-width: 900px;
       margin: auto;
       border: 1px solid #00ff66;
-      box-shadow: 0 0 15px rgba(0, 255, 102, 0.2);
-      padding: 20px;
-      min-height: 400px;
+      box-shadow: 0 0 20px rgba(0, 255, 102, 0.25);
+      padding: 25px;
+      min-height: 500px;
+      background: radial-gradient(circle, #0c120c 0%, #050505 100%);
     }
     .input-line {
       display: flex;
       margin-top: 15px;
     }
-    .prompt { margin-right: 10px; }
+    .prompt { margin-right: 10px; color: #00ff66; font-weight: bold; }
     input {
       background: transparent;
       border: none;
@@ -33,26 +34,37 @@
       outline: none;
       flex-grow: 1;
     }
-    .glitch { text-shadow: 2px 2px #ff0055; }
+    .dossier-box {
+      border-left: 3px solid #00ff66;
+      padding-left: 15px;
+      margin: 15px 0;
+      color: #bbf8cc;
+    }
+    .alert { color: #ff3344; font-weight: bold; }
+    .classified { background-color: #00ff66; color: #000; padding: 0 4px; font-weight: bold; }
+    .header-ascii {
+      color: #00ff66;
+      font-size: 11px;
+      line-height: 12px;
+      text-shadow: 1px 1px 5px rgba(0,255,102,0.4);
+    }
   </style>
 </head>
 <body>
 
 <div id="screen">
-  <pre class="glitch">
-=====================================================
-  WALKER CORP - SUB-LEVEL 86 // EMERGENCY OVERRIDE
-=====================================================
-  Status: SYSTEM KOMPROMITTIERT
-  Keilschrift-Firewall: RUNTIME_ERR_0x77
-=====================================================
-  Befehle: 'hilfe' für Instruktionen
+  <pre class="header-ascii">
+================================================================================
+  WALKER CORP // CLASSIFIED ARCHIVE SYSTEM 2056 [BUILD 86-OMEGA]
+  SECURITY CLEARANCE: LEVEL 5 REQUIRED // BIOMETRIC LOCK OVERRIDDEN
+================================================================================
+  Befehle: 'HILFE' eingeben für das Verzeichnis.
   </pre>
 
   <div id="output"></div>
 
   <div class="input-line">
-    <span class="prompt">root@walker:~#</span>
+    <span class="prompt">root@sublevel86:~#</span>
     <input type="text" id="cmd" autofocus autocomplete="off">
   </div>
 </div>
@@ -66,6 +78,7 @@
       const val = input.value.trim().toUpperCase();
       handleCommand(val);
       input.value = '';
+      window.scrollTo(0, document.body.scrollHeight);
     }
   });
 
@@ -74,25 +87,153 @@
   }
 
   function handleCommand(cmd) {
-    print(`> ${cmd}`);
+    print(`<br><span style="color:#66ff99;">> ${cmd}</span>`);
 
     switch(cmd) {
       case 'HILFE':
-        print("Mögliche Befehle: STATUS, CLEAR, oder Chiffre-Code eingeben.");
+      case 'HELP':
+      case 'DIR':
+        print(`
+<div class="dossier-box">
+  <b>SYSTEM-DIREKTIVEN & VERZEICHNISSE:</b><br><br>
+  - <b>AKTEN</b> : Personalakten des Teams (Professor, Elena, Marcus, Mutant)<br>
+  - <b>ARSENAL</b> : Waffenlager, modifizierte Ausrüstung & Nanotech<br>
+  - <b>SAFEHOUSES</b> : Stützpunkte, Server-Knoten & Verstecke<br>
+  - <b>FEINDE</b> : Bekannte Ziele, Syndikats-Köpfe & Schattenwesen<br>
+  - <b>LOCATIONS</b> : Feindliche Hotspots & okkulte Datenrelais<br>
+  - <b>STATUS</b> : Systemintegrität & Bedrohungslevel<br>
+  - <b>CLEAR</b> : Bildschirm bereinigen
+</div>`);
         break;
+
+      case 'AKTEN':
+      case 'TEAM':
+        print(`
+<div class="dossier-box">
+  <b>[PERSONALAKTEN - WALKER KERNEINHEIT]</b><br><br>
+  • <b>PROFESSOR</b> (Befehl: <i>AKTE PROFESSOR</i>)<br>
+    Status: Aktiv | Rolle: Operativer Kopf | Phänotyp: Unbekannt<br>
+    Merkmale: Neuro-Atemmaske mit Klick-Kühlung. Träger des alten Walker-Erbes.<br><br>
+  • <b>ELENA</b> (Befehl: <i>AKTE ELENA</i>)<br>
+    Status: Aktiv | Rolle: Social Infiltration & Darknet-Liquidierung<br>
+    Spezialität: Eiskalte Femme Fatale, Extraction von Milliardenwerten.<br><br>
+  • <b>MARCUS</b> (Befehl: <i>AKTE MARCUS</i>)<br>
+    Status: Chronisch schlaflos | Rolle: Quanten-Architekt & Code-Bruch<br>
+    Fokus: Zersetzung sumerischer Digital-Firewalls.<br><br>
+  • <b>DER MUTANT</b> (Befehl: <i>AKTE MUTANT</i> oder Chiffre: <i>NAM-SHUB-07</i>)<br>
+    Status: Stabilisiert | Rolle: Medizinischer Chef-Forscher / Schwere Kampfkraft<br>
+    Biometrie: 2,04 m Hüne, nanogesteuerte zelluläre Panzerung.
+</div>`);
+        break;
+
+      case 'AKTE PROFESSOR':
+        print(`
+<div class="dossier-box">
+  <b>DOSSIER: DER PROFESSOR</b><br>
+  Identität: <span class="classified">REDACTED // WALKER DYNASTIE</span><br>
+  Ausrüstung: Neuro-Filtermaske (Aktivkühlung mit akustischem Klick-Intervall), Dual Glock G49 Custom.<br>
+  Archiv-Freigabe: Träger der analogen sumerischen Ur-Schriften, die als einziger Schlüssel gegen die Okkult-Firewalls des Syndikats wirken.<br>
+  Öffentliche Fassade: Gründer der beitragsfreien Walker-Klinikkette.
+</div>`);
+        break;
+
+      case 'AKTE ELENA':
+        print(`
+<div class="dossier-box">
+  <b>DOSSIER: ELENA</b><br>
+  Codename: Silhouette<br>
+  Einsatzprofil: Wirtschaftsspionage, Infiltration von Exekutiv-Ebenen.<br>
+  Taktik: Perfektioniertes Social Engineering, gefolgt von totaler digitaler Enteignung feindlicher Konten im Darknet.<br>
+  Aktueller Status: 5 Milliarden USD des Senators erfolgreich transferiert.
+</div>`);
+        break;
+
+      case 'AKTE MARCUS':
+        print(`
+<div class="dossier-box">
+  <b>DOSSIER: MARCUS</b><br>
+  Funktion: Quanten-Infrastruktur & Dekodierung.<br>
+  Zustand: Akuter Schlafentzug, neurologisch überreizt.<br>
+  Besonderheit: Absolute Nikotin- und Rauschmittelabstinenz; steuert neuronale Interface-Rigs zur Einspeisung analoger Keilschriften in Binärcode.
+</div>`);
+        break;
+
+      case 'AKTE MUTANT':
+      case 'NAM-SHUB-07':
+        print(`
+<div class="dossier-box">
+  <b>DOSSIER: CHEF-FORSCHER // DER MUTANT</b><br>
+  Status: <span class="alert">GEN-EXPERIMENT TYP OMEGA</span><br>
+  Zellzustand: Unkontrollierte zelluläre Hyperplasie, im Zaum gehalten durch kraniale Neuro-Befehle an synthetische Nanobots.<br>
+  Kampfmodus: Nanobots verdichten Muskelfasern zu Hornplatten (Projektilresistent bis Kaliber 7.62mm).
+</div>`);
+        break;
+
+      case 'ARSENAL':
+      case 'WAFFEN':
+        print(`
+<div class="dossier-box">
+  <b>[ARSENAL & AUSRÜSTUNG - STAND 2056]</b><br><br>
+  • <b>GLOCK G49 CUSTOM DUALS</b>: Modifizierter Schlitten, integrierte Biometrie-Sperre, Schalldämpfer-Kompensator-Hybrid. Taktische Hauptwaffe des Professors.<br>
+  • <b>SYNTHETISCHE MED-NANOBOTS V4</b>: Intravenöse Nano-Kapseln zur Stabilisierung massiver Gen-Mutationen und Erzeugung temporärer subkutaner Panzerung.<br>
+  • <b>QUANTEN-RIG 'BABYLON'</b>: Marcus' Eigenbau-Terminal zur Verarbeitung nicht-linearer Keilschrift-Algorithmen.<br>
+  • <b>IONEN-VERNEBLER</b>: Gegenmaßnahmen zur Neutralisierung feindlicher Nebelwesen.
+</div>`);
+        break;
+
+      case 'SAFEHOUSES':
+      case 'BASIS':
+        print(`
+<div class="dossier-box">
+  <b>[OPERATIONELLE BASIS-STANDORTE]</b><br><br>
+  1. <b>SUB-LEVEL 86 (New York City)</b><br>
+     Unfertiger Wolkenkratzer, autarker EMP-gesicherter Faraday-Käfig, Panzerglas-Panzerung, direkte Leitungen in die Tiefsee-Backbones.<br><br>
+  2. <b>WALKER-KLINIK #04 (Unterstadt)</b><br>
+     Tarnung als Armenkrankenhaus. Im Untergeschoss: Gen-Labor des Mutanten mit Kryo-Stationen.<br><br>
+  3. <b>RIG ZERO (Arktis / Svalbard)</b><br>
+     Off-Grid Tiefkühldatenbank im Permafrost. Letzte Rückfallebene bei totalem Systemkollaps.
+</div>`);
+        break;
+
+      case 'FEINDE':
+      case 'TARGETS':
+        print(`
+<div class="dossier-box">
+  <b>[FEIND-ERKENNUNG & BEDROHUNGEN]</b><br><br>
+  • <b>DAS SYNDIKAT</b>: Global operierendes Schattenkonsortium aus Senatoren, Biotech-Milliardären und Tech-Okkultisten.<br>
+  • <b>SENATOR VANCE</b>: Politischer Strohmann des Syndikats; Konten soeben durch Elena liquidiert.<br>
+  • <b>DIE WÄCHTER / NEBELWESEN</b>: Nicht-menschliche, feinstoffliche Entitäten. Reagieren als automatischer Gegenangriff, sobald sumerische Firewalls fallen.
+</div>`);
+        break;
+
+      case 'LOCATIONS':
+        print(`
+<div class="dossier-box">
+  <b>[BEKANNTE FEINDLICHE ZIELORTE]</b><br><br>
+  • <b>ZIGGURAT CLOUD-HUB</b>: Virtuelles Rechenzentrum, verteilt über geheime Unterseekabel im Persischen Golf.<br>
+  • <b>VANCE PENTHOUSE (Stock 102)</b>: Midtown Manhattan. Unter verschärfter Überwachung.<br>
+  • <b>SITE URUK-SURFACE</b>: Ehemalige Grabungsstätte im Mittleren Osten; vermutete Quelle der digitalen Keilschrift-Malware.
+</div>`);
+        break;
+
       case 'STATUS':
-        print("Server-Integrität: 14% // Biometrischer Ping aktiv.");
+        print(`
+<div class="dossier-box">
+  <span class="alert">BEDROHUNG: KRITISCH</span><br>
+  - Externe Firewall: DURCHBROCHEN<br>
+  - Feindliche Annäherung: DACHBEREICH BLOCK 86<br>
+  - Nebelwesen-Signatur: BESTÄTIGT<br>
+  - Befehl: Waffensysteme entsichern.
+</div>`);
         break;
+
       case 'CLEAR':
+      case 'CLS':
         output.innerHTML = '';
         break;
-      case 'NAM-SHUB-07':
-        print("<br>*** ZUGRIFF GEWÄHRT: DOSSIER MUTANT FREIGESCHALTET ***");
-        print("Protokoll: Nanobot-Injektion stabilisiert Zellzerfall.");
-        print("Link: <a href='#' style='color:#fff;'>[Download verschlüsselte Akte]</a><br>");
-        break;
+
       default:
-        print("FEHLER: Befehl oder Autorisierungscode unbekannt.");
+        print(`FEHLER: Unbekannter Befehl '${cmd}'. Gib 'HILFE' ein.`);
     }
   }
 </script>
