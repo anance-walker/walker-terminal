@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>WALKER CORP // ARCHIVE TERMINAL</title>
+  <style>
+    body {
+      background-color: #0d0d0d;
+      color: #00ff66;
+      font-family: 'Courier New', monospace;
+      padding: 20px;
+      margin: 0;
+    }
+    #screen {
+      max-width: 800px;
+      margin: auto;
+      border: 1px solid #00ff66;
+      box-shadow: 0 0 15px rgba(0, 255, 102, 0.2);
+      padding: 20px;
+      min-height: 400px;
+    }
+    .input-line {
+      display: flex;
+      margin-top: 15px;
+    }
+    .prompt { margin-right: 10px; }
+    input {
+      background: transparent;
+      border: none;
+      color: #00ff66;
+      font-family: inherit;
+      font-size: inherit;
+      outline: none;
+      flex-grow: 1;
+    }
+    .glitch { text-shadow: 2px 2px #ff0055; }
+  </style>
+</head>
+<body>
+
+<div id="screen">
+  <pre class="glitch">
+=====================================================
+  WALKER CORP - SUB-LEVEL 86 // EMERGENCY OVERRIDE
+=====================================================
+  Status: SYSTEM KOMPROMITTIERT
+  Keilschrift-Firewall: RUNTIME_ERR_0x77
+=====================================================
+  Befehle: 'hilfe' für Instruktionen
+  </pre>
+
+  <div id="output"></div>
+
+  <div class="input-line">
+    <span class="prompt">root@walker:~#</span>
+    <input type="text" id="cmd" autofocus autocomplete="off">
+  </div>
+</div>
+
+<script>
+  const input = document.getElementById('cmd');
+  const output = document.getElementById('output');
+
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      const val = input.value.trim().toUpperCase();
+      handleCommand(val);
+      input.value = '';
+    }
+  });
+
+  function print(text) {
+    output.innerHTML += `<div>${text}</div>`;
+  }
+
+  function handleCommand(cmd) {
+    print(`> ${cmd}`);
+
+    switch(cmd) {
+      case 'HILFE':
+        print("Mögliche Befehle: STATUS, CLEAR, oder Chiffre-Code eingeben.");
+        break;
+      case 'STATUS':
+        print("Server-Integrität: 14% // Biometrischer Ping aktiv.");
+        break;
+      case 'CLEAR':
+        output.innerHTML = '';
+        break;
+      case 'NAM-SHUB-07':
+        print("<br>*** ZUGRIFF GEWÄHRT: DOSSIER MUTANT FREIGESCHALTET ***");
+        print("Protokoll: Nanobot-Injektion stabilisiert Zellzerfall.");
+        print("Link: <a href='#' style='color:#fff;'>[Download verschlüsselte Akte]</a><br>");
+        break;
+      default:
+        print("FEHLER: Befehl oder Autorisierungscode unbekannt.");
+    }
+  }
+</script>
+
+</body>
+</html>
